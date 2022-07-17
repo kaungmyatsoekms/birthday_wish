@@ -15,6 +15,7 @@ class Partner(models.Model):
         user_id = self.env['res.users'].browse(self._context.get('uid'))
         bd_peoples = self.env['res.partner'].search([('dob', '=', datetime.today())])
         template = self.env.ref('birthday_wish.mail_template_birthday_wish')
+        
         for bd_person in bd_peoples:
             # By Using Mail Template
             template.send_mail(bd_person.id, force_send=True)
